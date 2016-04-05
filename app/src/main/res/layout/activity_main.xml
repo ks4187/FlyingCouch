@@ -10,8 +10,66 @@
     tools:context="com.tir.flyingcouch.MainActivity">
 
     <TextView
+        android:id="@+id/companyName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="50dp"
-        android:text="Hello World!" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="[Add Logo Here]"
+        android:textSize="45dp" />
+
+    <TextView
+        android:id="@+id/loginText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/companyName"
+        android:layout_marginTop="89dp"
+        android:text="Username: "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/loginEnterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/loginText"
+        android:layout_alignBottom="@+id/loginText"
+        android:layout_toEndOf="@+id/loginText"
+        android:layout_toRightOf="@+id/loginText"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/passwordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/loginEnterText"
+        android:layout_marginTop="18dp"
+        android:text="Password: "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/passwordText"
+        android:layout_alignBottom="@+id/passwordText"
+        android:layout_toEndOf="@+id/passwordText"
+        android:layout_toRightOf="@+id/passwordText"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:singleLine="true"
+        android:text="Login" />
+
 </RelativeLayout>
