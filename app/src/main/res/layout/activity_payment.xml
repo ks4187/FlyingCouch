@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context=".PaymentActivity">
+
+
+        <TextView
+            android:id="@+id/paymentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Checkout Details"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/baseCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/paymentText"
+            android:layout_marginTop="30sp"
+            android:text="Base Cost"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/baseCostValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/paymentText"
+            android:layout_marginTop="30sp"
+            android:text="Value"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/perMileCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/baseCost"
+            android:layout_marginTop="30sp"
+            android:text="Your Cost\n($2.00 x per Mile)"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/perMileCostValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/baseCostValue"
+            android:layout_marginTop="30sp"
+            android:text="Value"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="20sp" />
+
+        <CheckBox
+            android:id="@+id/flexibleCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/perMileCost"
+            android:layout_marginTop="30sp"
+            android:text="Flexible? (get 30% off)"
+            android:textSize="20sp"
+            android:checked="true" />
+
+        <TextView
+            android:id="@+id/flexDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/flexibleCheck"
+            android:layout_marginLeft="32sp"
+            android:text="If this is selected furniture will be delivered within 4-5 business days.\nUntick to get delivery the same or the next day"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/totalCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/flexDesc"
+            android:layout_marginTop="30sp"
+            android:text="Total Cost"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/totalCostValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/flexDesc"
+            android:layout_marginTop="30sp"
+            android:text="Value"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="20sp" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkout"
+            android:id="@+id/checkoutButton"
+            android:layout_marginTop="30sp"
+            android:layout_below="@id/totalCost"
+            android:layout_centerHorizontal="true" />
+
+
+    </RelativeLayout>
+</ScrollView>

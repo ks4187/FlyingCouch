@@ -37,7 +37,8 @@
         android:layout_alignBottom="@+id/loginText"
         android:layout_toEndOf="@+id/loginText"
         android:layout_toRightOf="@+id/loginText"
-        android:ems="10" />
+        android:ems="10"
+        android:singleLine="true"/>
 
     <TextView
         android:id="@+id/passwordText"

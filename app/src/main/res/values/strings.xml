@@ -3,19 +3,11 @@
 
     <string-array name="storeList">
         <item>Select Store</item>
+        <item>-Enter Location-</item>
         <item>IKEA Brooklyn</item>
         <item>Walmart</item>
         <item>Home Depot</item>
         <item>ABC Carpet &amp; Home</item>
-    </string-array>
-
-    <string-array name="numberList">
-        <item>-</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5+</item>
     </string-array>
 
     <string name="google_app_id">904852787506</string>

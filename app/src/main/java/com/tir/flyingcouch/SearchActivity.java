@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     Spinner spinner;
     TextView sourceSelect;
     String sourceSelText;
+    String furnitureSelect;
 
     double ikeaLat = 40.672189, ikeaLng = -74.011347;
     double walmartLat = 40.792984, walmartLng = -74.042466;
@@ -36,7 +38,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     double abcLat = 40.738094, abcLng = -73.989660;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.source_destination);
 
@@ -58,18 +60,21 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                     String firstLineCheck = firstLineToText.getText().toString();
                     EditText zipToText = (EditText) findViewById(R.id.destinationZip);
                     String zipCheck = zipToText.getText().toString();
+                    EditText sourceAddress = (EditText) findViewById(R.id.sourceAddress);
+                    String sourceAdd = sourceAddress.getText().toString();
+                    furnitureSelect = spinner.getSelectedItem().toString();
+                    RadioButton vanSelect = (RadioButton) findViewById(R.id.vanRadioButton);
+                    RadioButton truckSelect = (RadioButton) findViewById(R.id.truckRadioButton);
 
-                    if(sourceSelText.equals("Select Store"))
-                    {
+                    if (sourceSelText.equals("Select Store")) {
                         Toast.makeText(SearchActivity.this, "Please Select Your Store", Toast.LENGTH_SHORT).show();
-                    }
-                    else if(firstLineCheck.equals("")){
+                    } else if (sourceSelText.equals("-Enter Location-") && sourceAdd.equals("")) {
+                        Toast.makeText(SearchActivity.this, "Please Enter Pickup Location", Toast.LENGTH_SHORT).show();
+                    } else if (firstLineCheck.equals("")) {
                         Toast.makeText(SearchActivity.this, "Please Enter First Line Address", Toast.LENGTH_SHORT).show();
-                    }
-                    else if(zipCheck.equals("")){
+                    } else if (zipCheck.equals("")) {
                         Toast.makeText(SearchActivity.this, "Please Enter Your Zip Code", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
                         EditText et = (EditText) findViewById(R.id.destinationFirstLine);
                         String location = et.getText().toString();
 
@@ -87,20 +92,36 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                             from = new LatLng(homeLat, homeLng);
                         } else if (sourceSelText.equals("ABC Carpet & Home")) {
                             from = new LatLng(abcLat, abcLng);
+                        } else if (sourceSelText.equals("-Enter Location-")) {
+                            List<Address> sourceList = gc.getFromLocationName(sourceAdd, 1);
+                            Address sourceAddr = sourceList.get(0);
+                            double sourceLat = sourceAddr.getLatitude();
+                            double sourceLng = add.getLongitude();
+                            from = new LatLng(sourceLat, sourceLng);
                         }
 
                         LatLng to = new LatLng(lat, lng);
                         double distance = SphericalUtil.computeDistanceBetween(from, to);
                         String showText = "Distance: " + Math.round((distance * 0.000621) * 100.0) / 100.0 + " Mi";
                         Toast.makeText(SearchActivity.this, showText, Toast.LENGTH_SHORT).show();
+                        int serviceSelected = 1;
+                        if(vanSelect.isChecked()){
+                            serviceSelected = 1;
+                        } else if(truckSelect.isChecked()){
+                            serviceSelected = 2;
+                        }
 
-                        Intent intent = new Intent(SearchActivity.this, ServiceActivity.class);
+                        Intent intent = new Intent(SearchActivity.this, PaymentActivity.class);
+                        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("serviceSelected", serviceSelected);
+                        intent.putExtra("distance", Math.round((distance * 0.000621) * 100.0) / 100.0);
+
                         startActivity(intent);
                     }
 
 
-                }
-                catch (IOException ex) {
+                } catch (IOException ex) {
                     Toast.makeText(SearchActivity.this, ex.getMessage().toString(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -109,7 +130,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
 
-    private void hideSoftKeyboard(View v){
+    private void hideSoftKeyboard(View v) {
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
@@ -117,6 +138,14 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         sourceSelect = (TextView) view;
+        if (sourceSelect.getText().equals("-Enter Location-")) {
+            EditText sourceAdd = (EditText) findViewById(R.id.sourceAddress);
+            sourceAdd.setVisibility(view.VISIBLE);
+        } else {
+            EditText sourceAdd = (EditText) findViewById(R.id.sourceAddress);
+            sourceAdd.setVisibility(view.INVISIBLE);
+            sourceAdd.setText("");
+        }
         //Toast.makeText(SearchActivity.this, "You Selected: " + sourceSelect.getText(), Toast.LENGTH_SHORT).show();
     }
 
