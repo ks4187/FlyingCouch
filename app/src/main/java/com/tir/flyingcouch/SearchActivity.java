@@ -6,6 +6,7 @@ import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -41,7 +42,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.source_destination);
-
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         spinner = (Spinner) findViewById(R.id.storeListDropdown);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.storeList, R.layout.spinner_select);
         adapter.setDropDownViewResource(R.layout.spinner_select);
