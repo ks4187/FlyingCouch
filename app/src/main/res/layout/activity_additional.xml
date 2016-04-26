@@ -13,112 +13,115 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context=".PaymentActivity">
+        tools:context=".AdditionalActivity">
 
 
         <TextView
-            android:id="@+id/paymentText"
+            android:id="@+id/reviewText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:text="Checkout Details"
+            android:text="Review Order"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/baseCost"
+            android:id="@+id/additionalText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/paymentText"
+            android:layout_below="@id/reviewText"
             android:layout_marginTop="30sp"
-            android:text="Base Cost"
+            android:text="Additional Options"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/baseCostValue"
+            android:id="@+id/addOptional"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/additionalText"
+            android:layout_alignBottom="@+id/additionalText"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/additionalText"
+            android:layout_toRightOf="@+id/additionalText"
+            android:text="(optional)"
+            android:textStyle="italic" />
+
+        <CheckBox
+            android:id="@+id/moverText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/additionalText"
+            android:layout_marginTop="10sp"
+            android:checked="false"
+            android:text="Moving Help"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/moverCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/moverText"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/paymentText"
-            android:layout_marginTop="30sp"
-            android:text="Value"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/perMileCost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/baseCost"
-            android:layout_marginTop="30sp"
-            android:text="Your Cost\n($2.00 x per Mile)"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/perMileCostValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/baseCostValue"
-            android:layout_marginTop="30sp"
-            android:text="Value"
+            android:layout_below="@id/additionalText"
+            android:text="$50"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="20sp" />
 
         <CheckBox
-            android:id="@+id/flexibleCheck"
+            android:id="@+id/assemblyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/perMileCost"
-            android:layout_marginTop="30sp"
-            android:checked="true"
-            android:text="Flexible? (get 30% off)"
+            android:layout_below="@id/moverText"
+            android:layout_marginTop="5sp"
+            android:checked="false"
+            android:text="Furniture Assembly"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/flexDesc"
+            android:id="@+id/assemblyCost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/flexibleCheck"
-            android:layout_marginLeft="32sp"
-            android:text="If this is selected furniture will be delivered within 4-5 business days.\nUntick to get delivery the same or the next day"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="italic" />
+            android:layout_alignBaseline="@id/assemblyText"
+            android:layout_alignParentRight="true"
+            android:text="$50"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="20sp" />
+
 
         <TextView
-            android:id="@+id/totalCost"
+            android:id="@+id/finalCost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/flexDesc"
+            android:layout_below="@id/assemblyText"
             android:layout_marginTop="30sp"
             android:text="Total Cost"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/totalCostValue"
+            android:id="@+id/finalTotalCostValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/flexDesc"
+            android:layout_below="@id/assemblyText"
             android:layout_marginTop="30sp"
             android:text="Value"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/checkoutButton"
+            android:id="@+id/finalCheckoutButton"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/totalCost"
+            android:layout_below="@id/finalCost"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30sp"
-            android:text="Review" />
+            android:text="Checkout" />
 
 
     </RelativeLayout>

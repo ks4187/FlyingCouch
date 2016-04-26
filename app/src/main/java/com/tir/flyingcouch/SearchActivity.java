@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.SphericalUtil;
 
@@ -38,11 +39,16 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     double homeLat = 40.741850, homeLng = -73.991420;
     double abcLat = 40.738094, abcLng = -73.989660;
 
+    Firebase mRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.source_destination);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        mRef = new Firebase("https://torrid-inferno-8261.firebaseio.com/sourceDestination");
+
         spinner = (Spinner) findViewById(R.id.storeListDropdown);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.storeList, R.layout.spinner_select);
         adapter.setDropDownViewResource(R.layout.spinner_select);
@@ -97,7 +103,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                             List<Address> sourceList = gc.getFromLocationName(sourceAdd, 1);
                             Address sourceAddr = sourceList.get(0);
                             double sourceLat = sourceAddr.getLatitude();
-                            double sourceLng = add.getLongitude();
+                            double sourceLng = sourceAddr.getLongitude();
                             from = new LatLng(sourceLat, sourceLng);
                         }
 
@@ -112,6 +118,12 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                             serviceSelected = 2;
                         }
 
+                        //FIREBASE CONNECT
+
+                        mRef.child("Source").setValue(sourceSelect.getText().toString());
+                        mRef.child("Destination").setValue(location);
+
+                        //NORMAL
                         Intent intent = new Intent(SearchActivity.this, PaymentActivity.class);
                         //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

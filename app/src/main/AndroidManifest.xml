@@ -32,11 +32,14 @@
         </activity>
         <activity android:name=".SearchActivity"></activity>
         <activity android:name=".PaymentActivity"></activity>
+        <activity android:name=".AdditionalActivity"></activity>
         <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".DriverActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
 
         <meta-data
             android:name="com.google.android.maps.v3.API_KEY"
-            android:value="INPUT_KEY_HERE" />
+            android:value="AIzaSyAm8DaRTIiRfsv1fgbxKl6tRVyK5DCM2q4" />
 
     </application>
 

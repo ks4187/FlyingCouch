@@ -69,9 +69,11 @@ public class PaymentActivity extends AppCompatActivity {
         toNextPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PaymentActivity.this, ChatActivity.class);
-                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent intent = new Intent(PaymentActivity.this, AdditionalActivity.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("totalCost", totalCost);
                 startActivity(intent);
             }
         });

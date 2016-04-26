@@ -1,10 +1,10 @@
 package com.tir.flyingcouch;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.DataSetObserver;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -13,10 +13,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.Firebase;
-import com.firebase.client.ValueEventListener;
 import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.Random;
 
@@ -39,8 +39,7 @@ public class ChatActivity extends ListActivity {
 
         setTitle(mUsername);
 
-        mFirebaseRef = new Firebase(FIREBASE_URL).child("customerChat");
-
+        mFirebaseRef = new Firebase(FIREBASE_URL).child("driverChat");
         EditText inputMessage = (EditText) findViewById(R.id.input_msg);
         inputMessage.setOnEditorActionListener(new TextView.OnEditorActionListener(){
 
@@ -59,6 +58,8 @@ public class ChatActivity extends ListActivity {
                 sendMessage();
             }
         });
+
+
     }
 
     @Override
@@ -76,7 +77,7 @@ public class ChatActivity extends ListActivity {
             }
         });
 
-        /*mConnectedListener = mFirebaseRef.getRoot().child("./info/connected").addValueEventListener(new ValueEventListener() {
+        /*mConnectedListener = mFirebaseRef.getRoot().child("/info/connected").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 boolean connected = (boolean) dataSnapshot.getValue();
@@ -93,13 +94,15 @@ public class ChatActivity extends ListActivity {
             }
         });*/
 
+
+
     }
 
     @Override
     public void onStop(){
         super.onStop();
-        mFirebaseRef.getRoot().child(".info/connected").removeEventListener(mConnectedListener);
         mChatListAdapter.cleanup();
+
     }
 
     private void setupUsername(){
@@ -108,7 +111,7 @@ public class ChatActivity extends ListActivity {
         if(mUsername == null){
             Random r = new Random();
 
-            mUsername = "TestAccount #" + r.nextInt(10);
+            mUsername = "Customer: ";
             prefs.edit().putString("username", mUsername).commit();
         }
     }
@@ -123,5 +126,7 @@ public class ChatActivity extends ListActivity {
             editText.setText("");
         }
     }
+
+
 
 }
