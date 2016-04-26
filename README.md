@@ -13,7 +13,7 @@ Flying Couch for the customers booking services for delivery agents will feature
 
 2) Standardized pricing on delivery services
 
-3) Customer service alerts if estimated schedule time is delayed or brought forward
+3) Customer service alerts if estimated schedule time is delayed or brought forward (for the MVP this will be alerts sents out to customers)
 
 4) Communicate with delivery agents directly via the app without exchanging personal information
 
